@@ -63,7 +63,7 @@ function breakfast()
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
-            lunch cm_$target-$variant
+            lunch ob_$target-$variant
         fi
     fi
     return $?
@@ -75,7 +75,7 @@ function eat()
 {
     if [ "$OUT" ] ; then
         MODVERSION=$(get_build_var CM_VERSION)
-        ZIPFILE=lineage-$MODVERSION.zip
+        ZIPFILE=OblivioN-OS-$MODVERSION.zip
         ZIPPATH=$OUT/$ZIPFILE
         if [ ! -f $ZIPPATH ] ; then
             echo "Nothing to eat"
@@ -915,7 +915,7 @@ alias cmkap='dopush cmka'
 
 function repopick() {
     T=$(gettop)
-    $T/vendor/cm/build/tools/repopick.py $@
+    $T/vendor/ob/build/tools/repopick.py $@
 }
 
 function fixup_common_out_dir() {
