@@ -168,6 +168,10 @@ PRODUCT_PACKAGES += \
     vim \
     wget \
     zip
+    
+#external
+    masquerade
+    
 
 # Custom off-mode charger
 ifneq ($(WITH_CM_CHARGER),false)
