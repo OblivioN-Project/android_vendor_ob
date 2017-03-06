@@ -1,4 +1,4 @@
-PRODUCT_BRAND ?= LineageOS
+PRODUCT_BRAND ?= oblivion
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -36,6 +36,10 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 # Enable ADB authentication
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
+
+# Enable Google Assistant on all devices.
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opa.eligible_device=true
 
 # Copy over the changelog to the device
 PRODUCT_COPY_FILES += \
@@ -87,6 +91,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/ob/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
 
+# NexusLauncher
+PRODUCT_COPY_FILES += \
+    vendor/cm/prebuilt/NexusLauncher/NexusLauncher.apk:system/app/NexusLauncher/NexusLauncher.apk
+
+# Wallpaper
+PRODUCT_COPY_FILES += \
+    vendor/cm/prebuilt/Wallpaper/Wallpaper.apk:system/app/Wallpaper/Wallpaper.apk
+    
 # Include CM audio files
 include vendor/ob/config/cm_audio.mk
 
@@ -112,7 +124,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libemoji \
     LiveWallpapersPicker \
-    PhotoTable \
     Terminal
 
 # Include explicitly to work around GMS issues
@@ -122,19 +133,12 @@ PRODUCT_PACKAGES += \
 
 # Custom CM packages
 PRODUCT_PACKAGES += \
-    AudioFX \
-    CMFileManager \
     CMSettingsProvider \
-    CMUpdater \
-    CMWallpapers \
     CyanogenSetupWizard \
-    Eleven \
-    ExactCalculator \
     LiveLockScreenService \
     LockClock \
     Screencast \
     SoundRecorder \
-    Trebuchet \
     WallpaperPicker \
     WeatherProvider
 
@@ -169,7 +173,6 @@ PRODUCT_PACKAGES += \
     wget \
     zip \
     masquerade
-    
 
 # Custom off-mode charger
 ifneq ($(WITH_CM_CHARGER),false)
